@@ -1,3 +1,3 @@
 exports.lambdaHandler = async (event, context) => {
-    return "hello World"
+    return "Yo Ho"
 };
