@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  lambda-function
+
+  Sample SAM Template for lambda-function
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 128
+
+Resources:
+  Lambda1Function:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambda1/
+      Handler: app.lambdaHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      Events:
+        Lambda1:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /lambda1
+            Method: get
+
+  Lambda2Function:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambda2/
+      Handler: index.lambdaHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      Events:
+        Lambda2:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /lambda2
+            Method: get
+
+Outputs:
+  Lambda1Api:
+    Description: "API Gateway endpoint URL for Prod stage for Lambda 1 function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/lambda1/"
+  Lambda1Function:
+    Description: "Lambda 1 Lambda Function ARN"
+    Value: !GetAtt Lambda1Function.Arn
+  Lambda1FunctionIamRole:
+    Description: "Implicit IAM Role created for Lambda 1 function"
+    Value: !GetAtt Lambda1FunctionRole.Arn
+
+  Lambda2Api:
+    Description: "API Gateway endpoint URL for Prod stage for Lambda 1 function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/lambda2/"
+  Lambda2Function:
+    Description: "Lambda 1 Lambda Function ARN"
+    Value: !GetAtt Lambda2Function.Arn
+  Lambda2FunctionIamRole:
+    Description: "Implicit IAM Role created for Lambda 1 function"
+    Value: !GetAtt Lambda2FunctionRole.Arn

@@ -1,0 +1,10 @@
+{
+  "name": "lambda2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}
