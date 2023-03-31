@@ -31,7 +31,7 @@ jobs:
         aws-region: ap-south-1
     - run: cd lambda1 && npm ci
     - run: zip -r publish.zip ./lambda1/*
-    - run: aws lambda update-function-code --function-name=lambda-function-Lambda1Function-7wvAhFxSUl08 --zip-file=fileb://publish.zip/*
+    - run: aws lambda update-function-code --function-name=lambda-function-Lambda1Function-7wvAhFxSUl08 --zip-file=fileb://publish.zip
     - run: cd lambda2 && npm ci
     - run: zip -r publish2.zip ./lambda2/*
-    - run: aws lambda update-function-code --function-name=lambda-function-Lambda2Function-uW6Vrz9roJPm --zip-file=fileb://publish2.zip/*
+    - run: aws lambda update-function-code --function-name=lambda-function-Lambda2Function-uW6Vrz9roJPm --zip-file=fileb://publish2.zip
